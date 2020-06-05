@@ -41,7 +41,7 @@ func StartClient() {
 	for {
 		line, _ := in.ReadString('\n')
 		line = strings.TrimSpace(line)
-		_, err := conn.Write([]byte(name+":"+line))
+		_, err := conn.Write([]byte(line))
 		if err != nil {
 			fmt.Println(err)
 		}

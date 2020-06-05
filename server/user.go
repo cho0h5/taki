@@ -40,7 +40,7 @@ func (u *user) startRead() {
 		}
 		if 0 < n {
 			data := bs[:n]
-			commender(string(data))
+			commender(u, string(data))
 		}
 	}
 }

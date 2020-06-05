@@ -7,24 +7,41 @@ import (
 	"fmt"
 )
 
-func commender(data string) {
-	d := strings.Split(data, ":")
+func commender(u user, data string) {
+	d := strings.Split(data, " ")
 	log.Print(data)
 
 	s := strings.Split(d[1], " ")
 	switch s[0] {
 	case "START":
-		shuffleMainDeck()
-
-		for _, u := range users {
-			n, _ := strconv.Atoi(s[1])
-			u.deck = mainDeck[:n]
-			mainDeck = mainDeck[n:]
-		}
-		broadcast("Game Start!\n")
-		for _, u := range users {
-			str := fmt.Sprint("Your Deck: ", u.deck)
-			sendMessage(u.name, str)
-		}
+		n, _ := strconv.Atoi(s[1])
+		gameStart(n)
+	case "push":
+		push()
+	case "pull":
+		pull()
 	}
+}
+
+func gameStart(numberOfCard int) {
+	broadcast("Game Start!\n")
+
+	shuffleMainDeck()
+	initializeTableDeck()
+
+	for _, u := range users {
+		u.deck = mainDeck[:numberOfCard]
+		mainDeck = mainDeck[numberOfCard:]
+	}
+
+	for _, u := range users {    // TODO
+		str := fmt.Sprint("Your Deck: ", u.deck)
+		sendMessage(u.name, str)
+	}
+}
+
+func push() {
+}
+
+func pull() {
 }
