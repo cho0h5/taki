@@ -3,19 +3,22 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/dominoyh5/taki/client"
+	"github.com/dominoyh5/taki/server"
 )
 
 const (
-	Server = 1 + iota
-	Client
-	Exit
+	serverFlag = 1 + iota
+	clientFlag
+	exitFlag
 )
 
 func main() {
-	fmt.Println("Welcome to TAKI\n")
+	fmt.Println("Welcome to TAKI")
 	fmt.Println("1. Server")
 	fmt.Println("2. Client")
-	fmt.Println("3. Exit\n")
+	fmt.Println("3. Exit")
 	fmt.Print("Enter: ")
 
 	for {
@@ -23,13 +26,13 @@ func main() {
 		fmt.Scan(&mode)
 
 		switch mode {
-		case Server:
-			StartServer()
+		case serverFlag:
+			server.StartServer()
 			os.Exit(0)
-		case Client:
-			StartClient()
+		case clientFlag:
+			client.StartClient()
 			os.Exit(0)
-		case Exit:
+		case exitFlag:
 			os.Exit(0)
 		}
 
