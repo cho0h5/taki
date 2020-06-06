@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-func commender(u user, data string) {
+func commender(u *user, data string) {
 	d := strings.Split(data, " ")
 	log.Print(data)
 
